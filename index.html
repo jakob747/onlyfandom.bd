@@ -228,7 +228,7 @@
             fill: var(--neon-green);
         }
 
-        /* --- CARDS GRID --- */
+ /* --- CARDS GRID --- */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -252,6 +252,10 @@
             height: 280px;
             overflow: hidden;
             border-radius: 10px;
+            background-color: #000; /* Added background for empty letterbox space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slideshow-track {
@@ -266,7 +270,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Changed from cover to contain so photos fit completely with no crop */
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
         }
@@ -291,7 +295,6 @@
             font-size: 0.95rem;
             color: var(--text-muted);
         }
-
         /* --- MODAL POPUP --- */
         #videoModal {
             position: fixed;
@@ -445,24 +448,29 @@
 
         <!-- Cards Grid -->
         <div class="cards-grid">
-            <div class="image-card">
-                <div class="image-frame">
-                    <div class="slideshow-track" data-slideshow>
-                        <img src="https://iili.io/CgH1VnV.png" alt="Creator 1" class="slide-img active">
-                        <img src="https://iili.io/CgH1X6P.png" alt="Creator 2" class="slide-img">
-                    </div>
-                </div>
-                <div class="card-caption">
-                    <h3 class="card-caption-title">Anal Queen</h3>
-                    <p class="card-caption-text">Im very horny and temptating. I can handle your Dick Well. Making you cum hard is my number one priority.</p>
-                </div>
+    <div class="image-card">
+        <div class="image-frame">
+            <div class="slideshow-track" data-slideshow>
+                <img src="https://iili.io/CgH1VnV.png" alt="Creator 1" class="slide-img active">
+                <img src="https://iili.io/CgH1X6P.png" alt="Creator 2" class="slide-img">
+                <!-- Add more photo links below by copying the line and changing the src/alt -->
+                <img src="https://iili.io/CgH1wcF.png" alt="Creator 3" class="slide-img">
+                <img src="https://iili.io/CgH1jF1.png" alt="Creator 4" class="slide-img">
             </div>
+        </div>
+        <div class="card-caption">
+            <h3 class="card-caption-title">Anal Queen</h3>
+            <p class="card-caption-text">Im very horny and temptating. I can handle your Dick Well. Making you cum hard is my number one priority.</p>
+        </div>
+    </div>
+</div>
 
             <div class="image-card">
                 <div class="image-frame">
                     <div class="slideshow-track" data-slideshow>
                         <img src="https://iili.io/CgJnlnf.png" alt="Creator 3" class="slide-img active">
                         <img src="https://iili.io/CgJzaZg.png" alt="Creator 4" class="slide-img">
+                      <img src="https://iili.io/CgHWiTg.png" alt="Creator 3" class="slide-img">
                     </div>
                 </div>
                 <div class="card-caption">
@@ -476,6 +484,7 @@
                     <div class="slideshow-track" data-slideshow>
                         <img src="https://iili.io/C4ajtff.png" alt="Creator 5" class="slide-img active">
                         <img src="https://iili.io/C4ajsxn.png" alt="Creator 6" class="slide-img">
+                      <img src="https://iili.io/C4ajPDX.png" alt="Creator 3" class="slide-img">
                     </div>
                 </div>
                 <div class="card-caption">
