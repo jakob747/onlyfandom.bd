@@ -534,31 +534,17 @@
         <p>&copy; 2026 ONLYFANDOM. ALL RIGHTS RESERVED.</p>
     </footer>
 
-<!-- Standard secure protocol link for Netlify compatibility -->
+<!-- Google Translate API Script -->
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
     // --- GOOGLE TRANSLATE SETUP ---
     function googleTranslateElementInit() {
-        if (window.google && window.google.translate) {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'bn',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    }
-
-    // Trigger auto-translation to Bangla programmatically
-    function triggerBanglaTranslation() {
-        const selectField = document.querySelector('.goog-te-combo');
-        if (selectField) {
-            selectField.value = 'bn';
-            selectField.dispatchEvent(new Event('change'));
-        } else {
-            // Fallback retry if widget takes a second to load on deployment
-            setTimeout(triggerBanglaTranslation, 500);
-        }
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'bn',
+            autoDisplay: false
+        }, 'google_translate_element');
     }
 
     // --- DOM CONTENT LOADED LOGIC ---
@@ -590,10 +576,16 @@
 
         if (acceptBtn) {
             acceptBtn.addEventListener('click', () => {
-                const banner = document.getElementById('bangla-translate-banner');
-                if (banner) banner.style.display = 'none';
-                triggerBanglaTranslation();
+                document.getElementById('bangla-translate-banner').style.display = 'none';
+                
+                // Set Google Translate cookie for English to Bangla
+                document.cookie = "googtrans=/en/bn; path=/;";
+                document.cookie = "googtrans=/en/bn; path=/; domain=" + window.location.hostname;
+                
                 localStorage.setItem('bangla_dismissed', 'true');
+                
+                // Reload page so Google Translate applies the translation immediately
+                window.location.reload();
             });
         }
 
@@ -604,7 +596,6 @@
                 localStorage.setItem('bangla_dismissed', 'true');
             });
         }
-
         // --- SLIDESHOW LOGIC ---
         const slideshowTracks = document.querySelectorAll('[data-slideshow]');
         slideshowTracks.forEach(track => {
